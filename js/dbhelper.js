@@ -12,27 +12,26 @@
     return;
   }
 
-  // Creates the database
-
-  console.log('We\'re about to create a database!'); // This shows in the console
-
-  var dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
-    console.log('Creating the database'); // This does not :(
-
-  // If there is not an objectstore named 'restaurants', create one, with a primary key of 'id'
-
-    if (!upgradeDb.objectStoreNames.contains('restaurants', {keypath: 'id'} )) { 
-      var restaurantsOS = upgradeDb.createObjectStore('restaurants');
-
-      restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}) // Create index for neighborhoods
-      restaurantsOS.createIndex('cuisine', 'cuisine', {unique: false}) // Create index for cuisines
-
-      console.log('Creating the restaurants objectstore'); // This does not either
-    }
-  });
-
 })();
 
+// Creates the database
+
+console.log('We\'re about to create a database!'); // This shows in the console
+
+var dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
+  console.log('Creating the database'); // This does not :(
+
+// If there is not an objectstore named 'restaurants', create one, with a primary key of 'id'
+
+  if (!upgradeDb.objectStoreNames.contains('restaurants', {keypath: 'id'} )) {
+    var restaurantsOS = upgradeDb.createObjectStore('restaurants', {keypath: 'id'} );
+
+    restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}) // Create index for neighborhoods
+    restaurantsOS.createIndex('cuisine', 'cuisine', {unique: false}) // Create index for cuisines
+
+    console.log('Creating the restaurants objectstore'); // This does not either
+  }
+});
 
 /**
  * Common database helper functions.
@@ -61,20 +60,48 @@ class DBHelper {
    */
 
   static fetchRestaurants(callback) {
+    /*
+    dbPromise MUST be defined here, somehow...
+    */
+
+  //  const dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
+
+  //  });
+
+    /* For reference from above
+
+    var dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
+      console.log('Creating the database'); // This does not :(
+
+    // If there is not an objectstore named 'restaurants', create one, with a primary key of 'id'
+
+      if (!upgradeDb.objectStoreNames.contains('restaurants', {keypath: 'id'} )) {
+        var restaurantsOS = upgradeDb.createObjectStore('restaurants');
+
+        restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}) // Create index for neighborhoods
+        restaurantsOS.createIndex('cuisine', 'cuisine', {unique: false}) // Create index for cuisines
+
+        console.log('Creating the restaurants objectstore'); // This does not either
+      }
+    });
+
+    */
+
+
     let xhr = new XMLHttpRequest();
     xhr.open('GET', DBHelper.DATABASE_URL); // Get data from the sails server
-    console.log('Got data from the server!'); // This fires twice?
+    // console.log('Got data from the server!'); // This fires twice?
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!
         const json = JSON.parse(xhr.responseText); // This is the actual data array
         const restaurants = json;
-        console.log(json); // This fires twice too
+        // console.log(json); // This fires twice too
 
         // dbTransaction.add(restaurants);
 
-        let tx = dbPromise.transction('restaurants', 'readwrite');
-        let store = tx.objectstore('restaurants');
-        dbTransaction.add(restaurants);
+        // let tx = dbPromise.transaction('restaurants', 'readwrite');
+      //   let store = tx.objectstore('restaurants');
+        // dbTransaction.add(restaurants);
 
         callback(null, restaurants);
       } else { // Oops!. Got an error from server.
