@@ -51,6 +51,24 @@
     <!-- end restaurant -->
     <!-- Beginning reviews -->
     <section id="reviews-container">
+
+      <!--start reviews form-->
+      <form>
+        <input type="text" name="name" value="reviewer_name">
+        <input type="text" name="rating" value="rating">
+        <input type="text" name="comments" value="comment_text">
+        <input type="submit" value="Submit">
+      </form>
+
+      <!--
+      {
+          "restaurant_id": <restaurant_id>,
+          "name": <reviewer_name>,
+          "rating": <rating>,
+          "comments": <comment_text>
+      }
+      -->
+      <!--end reviews form-->
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
