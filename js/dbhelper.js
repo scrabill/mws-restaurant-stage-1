@@ -65,8 +65,8 @@ class DBHelper {
       dbPromise.then(function(db) {
       //console.log(restaurants);
       //console.log(restaurants.length);
-      console.log(i);
-      console.log(restaurants[i]);
+      //console.log(i);
+      //console.log(restaurants[i]);
       let tx = db.transaction('keyval', 'readwrite'); // Starting the transaction
       let keyvalStore = tx.objectStore('keyval'); // Build the object to put into the database
       keyvalStore.put(restaurants[i],restaurants[i].id); // Storing each object into the databate (specifying what to store)
