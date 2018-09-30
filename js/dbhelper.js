@@ -24,7 +24,8 @@ var dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
 // If there is not an objectstore named 'restaurants', create one, with a primary key of 'id'
 
   if (!upgradeDb.objectStoreNames.contains('restaurants', {keypath: 'id'} )) {
-    var restaurantsOS = upgradeDb.createObjectStore('restaurants', {keypath: 'id'} );
+    // var restaurantsOS = upgradeDb.createObjectStore('restaurants', {keypath: 'id'} );
+    var restaurantsOS = upgradeDb.createObjectStore('keyval'); // Making the storage
 
     restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}) // Create index for neighborhoods
     restaurantsOS.createIndex('cuisine', 'cuisine', {unique: false}) // Create index for cuisines
@@ -59,7 +60,58 @@ class DBHelper {
    * Fetch all restaurants.
    */
 
+  static addDB(restaurants) { // Make a new one for reviews
+    for (let i=0; i < restaurants.length; i++) { // Look into "closure" and "hoisting", slight differences between ES5 & ES6
+      dbPromise.then(function(db) {
+      //console.log(restaurants);
+      //console.log(restaurants.length);
+      console.log(i);
+      console.log(restaurants[i]);
+      let tx = db.transaction('keyval', 'readwrite'); // Starting the transaction
+      let keyvalStore = tx.objectStore('keyval'); // Build the object to put into the database
+      keyvalStore.put(restaurants[i],restaurants[i].id); // Storing each object into the databate (specifying what to store)
+      return tx.complete; // Stop the transaction
+      }).catch(function(error){
+        console.log("An erorr has occured during the IDB " + error); // Give an error. error = what the error is exactly
+      })
+    }
+
+    // TODO: if no connections, pull from IDB (look at using fetch for fallback (IDB.getAll))
+    // Small changes, then save, then improve from there
+
+      /*
+      set(key, val) {
+        return dbPromise.then(db => {
+          const tx = db.transaction('keyval', 'readwrite');
+          tx.objectStore('keyval').put(val, key);
+          return tx.complete;
+        });
+      },
+
+      From jake
+
+      */
+
+      // let tx = db.transaction
+
+  }
+
+  // let tx = dbPromise.transaction('restaurants', 'readwrite');
+//   let store = tx.objectstore('restaurants');
+  // dbTransaction.add(restaurants);
+
   static fetchRestaurants(callback) {
+
+    /*
+    Pull from web and display first
+    Display data, then write to the Database
+    When someone is asking for a restaurant, check the database first, if not, go to network
+    Update database with changes from the network
+    CATCH if the server returns nothing (error handling)
+    */
+
+
+
     /*
     dbPromise MUST be defined here, somehow...
     */
@@ -94,14 +146,12 @@ class DBHelper {
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!
         const json = JSON.parse(xhr.responseText); // This is the actual data array
-        const restaurants = json;
-        // console.log(json); // This fires twice too
+        const restaurants = json; // Fix this later
+        // console.log(json); // This fires twice = OK, can improve this later in main.js
 
         // dbTransaction.add(restaurants);
+        DBHelper.addDB(restaurants);
 
-        // let tx = dbPromise.transaction('restaurants', 'readwrite');
-      //   let store = tx.objectstore('restaurants');
-        // dbTransaction.add(restaurants);
 
         callback(null, restaurants);
       } else { // Oops!. Got an error from server.
