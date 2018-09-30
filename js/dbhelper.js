@@ -159,6 +159,9 @@ class DBHelper {
         callback(error, null);
       }
     };
+    xhr.onerror = () => {
+      console.log("You're out of luck " + error);
+    };
     xhr.send();
   }
 
