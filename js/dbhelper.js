@@ -145,6 +145,7 @@ class DBHelper {
     // console.log('Got data from the server!'); // This fires twice?
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!
+        console.log('Server response is ' + xhr.status);
         const json = JSON.parse(xhr.responseText); // This is the actual data array
         const restaurants = json; // Fix this later
         // console.log(json); // This fires twice = OK, can improve this later in main.js
@@ -154,14 +155,18 @@ class DBHelper {
 
 
         callback(null, restaurants);
-      } else { // Oops!. Got an error from server.
+      }
+      // if (xhr.status === 500) {
+        // console.log("Sheeeet");
+      // }
+      else { // Oops!. Got an error from server.
         const error = (`Request failed. Returned status of ${xhr.status}`);
         callback(error, null);
       }
     };
-    xhr.onerror = () => {
-      console.log("You're out of luck " + error);
-    };
+    // xhr.onerror = (error) => {
+      // console.log("You're out of luck " + error);
+    // };
     xhr.send();
   }
 
