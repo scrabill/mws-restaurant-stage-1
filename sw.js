@@ -45,16 +45,6 @@ self.addEventListener('fetch', function(event) {
 
 // Source: https://developers.google.com/web/fundamentals/codelabs/offline/ >> VERY HELPFUL
 
-self.addEventListener('fetch', function(event) {
- console.log(event.request.url);
-
- event.respondWith(
-   caches.match(event.request).then(function(response) {
-     return response || fetch(event.request);
-   })
- );
-});
-
 //
 //self.addEventListener('fetch', function(event) {
   // TODO: respond with an entry from the cache if there is one.
