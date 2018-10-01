@@ -7,10 +7,14 @@ var urlsToCache = [
       '/index.html',
       '/manifest.json',
       '/certificates.js',
-      '/css'
+      '/css',
+      '/css/styles.css',
+      "/js/dbhelper.js",
+      "/js/main.js",
+      "/js/restaurant_info.js"
      ];
 
-// Open the cache & add urls     
+// Open the cache & add urls
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
@@ -22,7 +26,7 @@ self.addEventListener('install', function(event) {
       return cache.addAll(urlsToCache);
     })
   );
-}); 
+});
 
 // Intercept and return cached version of assets
 
