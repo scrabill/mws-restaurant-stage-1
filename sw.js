@@ -12,7 +12,7 @@ var urlsToCache = [
       "/js/dbhelper.js",
       "/js/main.js",
       "/js/restaurant_info.js",
-      "img/undefined.jpg"
+      "/img/undefined.jpg"
      ];
 
 // Open the cache & add urls
