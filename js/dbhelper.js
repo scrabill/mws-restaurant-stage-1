@@ -164,9 +164,9 @@ class DBHelper {
         callback(error, null);
       }
     };
-    // xhr.onerror = (error) => {
-      // console.log("You're out of luck " + error);
-    // };
+    xhr.onerror = (error) => {
+    console.log("You're out of luck " + error);
+    };
     xhr.send();
   }
 
