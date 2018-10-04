@@ -206,10 +206,11 @@ static addDBReviews(reviews) {
   static fetchReviews(callback) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', DBHelper.DATABASE_URL_REVIEWS); // Get data from the sails server
+    // console.log(DATABASE_URL_REVIEWS);
     // console.log('Got data from the server!'); // This fires twice?
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!
-        console.log('Server response is ' + xhr.status);
+        // console.log('Server response is ' + xhr.status);
         const json = JSON.parse(xhr.responseText); // This is the actual data array
         const reviews = json; // Fix this later
         // console.log(json); // This fires twice = OK, can improve this later in main.js
