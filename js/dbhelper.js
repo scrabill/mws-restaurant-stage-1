@@ -48,6 +48,11 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
+  static get DATABASE_URL_REVIEWS() {
+    const port = 1337; // Change this to your server port
+    return `http://localhost:${port}/reviews`;
+  }
+
 /*
   static dbTransaction(db) {
     let tx = dbPromise.transction('restaurants', 'readwrite');
