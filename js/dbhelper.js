@@ -76,6 +76,10 @@ class DBHelper {
       })
     }
 
+    /**
+     * Fetch all reviews.
+     */
+
     // TODO: if no connections, pull from IDB (look at using fetch for fallback (IDB.getAll))
     // Small changes, then save, then improve from there
 
@@ -95,6 +99,24 @@ class DBHelper {
       // let tx = db.transaction
 
   }
+
+/*
+Fetch all reviews
+*/
+
+static addDBReviews(reviews) {
+ for (let i=0; i < reviews.length; i++) {
+   dbPromise.then(function(db) {
+   let tx = db.transaction('keyval', 'readwrite'); // Starting the transaction
+   let keyvalStore = tx.objectStore('keyval'); // Build the object to put into the database
+   keyvalStore.put(reviews[i],reviews[i].id); // Storing each object into the databate (specifying what to store)
+   return tx.complete; // Stop the transaction
+   }).catch(function(error){
+     console.log("An erorr has occured during the IDB " + error); // Give an error. error = what the error is exactly
+   })
+ }
+}
+
 
   // let tx = dbPromise.transaction('restaurants', 'readwrite');
 //   let store = tx.objectstore('restaurants');
