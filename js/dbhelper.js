@@ -18,14 +18,14 @@
 
 console.log('We\'re about to create a database!'); // This shows in the console
 
-var dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
+const dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
   console.log('Creating the database'); // This does not :(
 
 // If there is not an objectstore named 'restaurants', create one, with a primary key of 'id'
 
   if (!upgradeDb.objectStoreNames.contains('restaurants', {keypath: 'id'} )) {
     // var restaurantsOS = upgradeDb.createObjectStore('restaurants', {keypath: 'id'} );
-    var restaurantsOS = upgradeDb.createObjectStore('keyval'); // Making the storage
+    const restaurantsOS = upgradeDb.createObjectStore('keyval'); // Making the storage
 
     restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}) // Create index for neighborhoods
     restaurantsOS.createIndex('cuisine', 'cuisine', {unique: false}) // Create index for cuisines
