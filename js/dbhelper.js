@@ -18,7 +18,7 @@
 
 console.log('We\'re about to create a database!'); // This shows in the console
 
-const dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
+const dbPromise = idb.open('mws-restaurant-reviews', 7, function(upgradeDb) {
   console.log('Creating the database'); // This does not :(
 
 // If there is not an objectstore named 'restaurants', create one, with a primary key of 'id'
