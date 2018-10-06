@@ -19,11 +19,11 @@ var urlsToCache = [
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open('cacheName').then(function(cache) {
-      console.log('Opened Cache');
+    caches.open(cacheName).then(function(cache) {
+      // console.log('Opened Cache');
 
       // Print all cached urls to the console - double check that its working!
-      console.log('urlsToCache');
+      // console.log('urlsToCache');
       return cache.addAll(urlsToCache);
     })
   );
@@ -32,7 +32,8 @@ self.addEventListener('install', function(event) {
 // Intercept and return cached version of assets
 
 self.addEventListener('fetch', function(event) {
- console.log(event.request.url);
+  var requestUrl = new URL(event.request.url);
+ // console.log(event.request.url); // Prints all cached URLs
 
  // Look at incoming request, serve the cached verison (if it exists)
 
