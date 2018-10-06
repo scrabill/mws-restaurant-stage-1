@@ -28,7 +28,7 @@ const dbPromise = idb.open('mws-restaurant-reviews', 7, function(upgradeDb) {
     const restaurantsOS = upgradeDb.createObjectStore('keyval'); // Making the storage
 
     restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}); // Create index for neighborhoods
-    restaurantsOS.createIndex('cuisine', 'cuisine', {unique: false}); // Create index for cuisines. TODO Add data
+    restaurantsOS.createIndex('cuisine_type', 'cuisine_type', {unique: false}); // Create index for cuisines. TODO Add data
     restaurantsOS.createIndex('reviews', 'reviews', {unique: false}); // Create index for review. TODO Add data
 
     console.log('Creating the restaurants objectstore');
