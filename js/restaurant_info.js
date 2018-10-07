@@ -69,9 +69,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   }
   // fill reviews
   if (restaurant.reviews) {
-    fetchReviews();
+    DBHelper.fetchReviewsById(restaurant.id, fillReviewsHTML());
   }
-
 }
 
 /**
