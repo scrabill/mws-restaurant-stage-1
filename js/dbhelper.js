@@ -203,10 +203,12 @@ static addDBReviews(reviews) {
   Fetch reviews
   */
 
-  static fetchReviews(callback) {
+  static fetchReviews(id, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', DBHelper.DATABASE_URL_REVIEWS); // Get data from the sails server
-    console.log(DATABASE_URL_REVIEWS);
+    //xhr.open('GET', DBHelper.DATABASE_URL_REVIEWS?restaurant_id=id); // Get data from the sails server
+    xhr.open('GET', `${DBHelper.DATABASE_URL_REVIEWS}?restaurant_id=${id}`);
+    // http://localhost:8000/restaurant.html?id=6
+    // console.log(DBHelper.DATABASE_URL_REVIEWS); // Print the current URL
     // console.log('Got data from the server!'); // This fires twice?
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!
@@ -247,14 +249,14 @@ static addDBReviews(reviews) {
 
   /**
    * Fetch a review by its ID.
-   */
+
   static fetchReviewsById(id, callback) {
     // fetch all reviews with proper error handling.
     DBHelper.fetchReviews((error, reviews) => {
       if (error) {
         callback(error, null);
       } else {
-        const review = reviews.find(r => r.id == id);
+        const reviews = reviews.filter(r => r.id == id); // Find all that match with filter, not just the first one
         if (reviews) { // Got the reviews
           callback(null, reviews);
         } else { // Restaurant does not exist in the database
@@ -263,6 +265,7 @@ static addDBReviews(reviews) {
       }
     });
   }
+   */
 
   /**
    * Fetch a restaurant by its ID.

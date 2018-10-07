@@ -68,9 +68,16 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
     fillRestaurantHoursHTML();
   }
   // fill reviews
-  if (restaurant.reviews) {
-    DBHelper.fetchReviewsById(restaurant.id, fillReviewsHTML()); // TODO Currently, this is still looking at the Restaurant database, not reviews
-  }
+
+    DBHelper.fetchReviews(restaurant.id, (error, reviews) => {
+      if (!reviews) {
+        console.error("failed: ", error);
+        return;
+      }
+      console.log("might just work: ", reviews);
+      fillReviewsHTML(reviews);
+      callback(null, reviews)
+    });
 }
 
 /**
