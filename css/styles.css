@@ -435,10 +435,13 @@ button {
   color: #666;
 }
 
-.favorite {
-  background-color: pink;
+#favorite {
+  background-color: lightgrey;
+  font-size: 30px;
 }
 
-.notFavorite {
-  background-color: grey;
+.favorite {
+  height: 50px
+  width: 50px;
+  color: red;
 }

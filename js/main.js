@@ -170,15 +170,47 @@ createRestaurantHTML = (restaurant) => {
   /*
   favorites
   TODO:
-  If restaurant is a favorite, then show a red heart
-  If restaurant is not a favorite, show a grey heart
+  If restaurant is a favorite, then apply favorite class to button
+  If restaurant is not a favorite, then apply notFavorite class to button
   On click, toggle favorite status (yes/no)
   Write status back to the database
   */
+  // const isFavorite = restaurant.is_favorite;
+/*
+  const favoriteButton = document.getElementById("favorite"); // Finds the favorite button
+  favoriteButton.addEventListener('click', switchClass, false);
 
+  function switchClass() {
+    if (favoriteButton.classList) {
+      favoriteButton.classList.toggle("myClass");
+    }
+  }*/
 
+  /*
+
+  function myFunction() {
+    var element = document.getElementById("myDIV");
+    element.classList.toggle("mystyle");
+    }
+
+  */
 
 }
+
+/*
+Function to toggle between favorite class
+*/
+
+const favoriteButton = document.getElementById("favorite"); // Finds the favorite button
+favoriteButton.addEventListener('click', switchClass, false);
+
+function switchClass() {
+  if (favoriteButton.classList) {
+    favoriteButton.classList.toggle("favorite");
+  }
+}
+
+
 
 /**
  * Add markers for current restaurants to the map.

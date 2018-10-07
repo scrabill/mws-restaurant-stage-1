@@ -45,7 +45,20 @@
       <h2 id="restaurant-name"></h2>
       <img id="restaurant-img">
       <p id="restaurant-cuisine"></p>
-      <button id="favorites">❤</p>
+      <button id="favorite">❤</button>
+
+      <script>
+
+      const favoriteButton = document.getElementById("favorite"); // Finds the favorite button
+      favoriteButton.addEventListener('click', switchClass, false);
+
+      function switchClass() {
+        if (favoriteButton.classList) {
+          favoriteButton.classList.toggle("favorite");
+        }
+      }
+
+      </script>
       <p id="restaurant-address"></p>
       <table id="restaurant-hours" aria-role="table"></table>
     </section>
