@@ -71,12 +71,11 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
     DBHelper.fetchReviews(restaurant.id, (error, reviews) => {
       if (!reviews) {
-        console.error("failed: ", error);
+      //  console.error("failed: ", error);
         return;
       }
-      console.log("might just work: ", reviews);
+      // console.log("might just work: ", reviews);
       fillReviewsHTML(reviews);
-      callback(null, reviews)
     });
 }
 

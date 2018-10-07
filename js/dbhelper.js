@@ -29,7 +29,7 @@ const dbPromise = idb.open('mws-restaurant-reviews', 7, function(upgradeDb) {
 
     restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}); // Create index for neighborhoods
     restaurantsOS.createIndex('cuisine_type', 'cuisine_type', {unique: false}); // Create index for cuisines. TODO Add data
-    // restaurantsOS.createIndex('restaurant_id', 'restaurant_id', {unique: false}); // Create index for review. TODO Add data
+    restaurantsOS.createIndex('restaurant_id', 'restaurant_id', {unique: false}); // Create index for review. TODO Add data
 
     console.log('Creating the restaurants objectstore');
   }
