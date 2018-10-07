@@ -166,6 +166,18 @@ createRestaurantHTML = (restaurant) => {
   li.append(more)
 
   return li
+
+  /*
+  favorites
+  TODO:
+  If restaurant is a favorite, then show a red heart
+  If restaurant is not a favorite, show a grey heart
+  On click, toggle favorite status (yes/no)
+  Write status back to the database
+  */
+
+
+
 }
 
 /**
