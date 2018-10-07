@@ -32,21 +32,36 @@ self.addEventListener('install', function(event) {
 // Intercept and return cached version of assets
 
 self.addEventListener('fetch', function(event) {
-  var requestUrl = new URL(event.request.url);
+    event.respondWith(
+        caches.match(event.request)
+        .then(function(response) {
+            if(response){
+                return response
+            }
+            // not in cache, return from network
+            return fetch(event.request, {credentials: 'include'});
+        })
+    );
+});
+
+// Source: https://itnext.io/service-workers-your-first-step-towards-progressive-web-apps-pwa-e4e11d1a2e85
+
+//self.addEventListener('fetch', function(event) {
+  //var requestUrl = new URL(event.request.url);
  // console.log(event.request.url); // Prints all cached URLs
 
  // Look at incoming request, serve the cached verison (if it exists)
 
- event.respondWith(
-   caches.match(event.request).then(function(response) {
-     return response || fetch(event.request);
+ //event.respondWith(
+   //caches.match(event.request).then(function(response) {
+     //return response || fetch(event.request);
      /*
      TODO: Uncaught (in promise) TypeError: Failed to execute 'fetch' on 'ServiceWorkerGlobalScope': 'only-if-cached' can be set only with 'same-origin' mode
     at sw.js:42
      */
-   })
- );
-});
+   //})
+ //);
+//});
 
 // Source: https://developers.google.com/web/fundamentals/codelabs/offline/ >> VERY HELPFUL
 
