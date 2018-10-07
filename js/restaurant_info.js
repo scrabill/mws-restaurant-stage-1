@@ -69,7 +69,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   }
   // fill reviews
   if (restaurant.reviews) {
-    DBHelper.fetchReviewsById(restaurant.id, fillReviewsHTML());
+    DBHelper.fetchReviewsById(restaurant.id, fillReviewsHTML()); // TODO Currently, this is still looking at the Restaurant database, not reviews
   }
 }
 
