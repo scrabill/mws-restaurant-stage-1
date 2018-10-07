@@ -246,6 +246,25 @@ static addDBReviews(reviews) {
   */
 
   /**
+   * Fetch a review by its ID.
+   */
+  static fetchReviewsById(id, callback) {
+    // fetch all reviews with proper error handling.
+    DBHelper.fetchReviews((error, reviews) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        const review = reviews.find(r => r.id == id);
+        if (reviews) { // Got the reviews
+          callback(null, reviews);
+        } else { // Restaurant does not exist in the database
+          callback('Reviews does not exist', null);
+        }
+      }
+    });
+  }
+
+  /**
    * Fetch a restaurant by its ID.
    */
   static fetchRestaurantById(id, callback) {
