@@ -54,9 +54,12 @@
     <section id="reviews-container">
 
       <!--start reviews form-->
-      <form>
+      <form action="http://localhost:1337/reviews/" method="post">
         <fieldset>
           <legend>Submit a Review</legend>
+          <label for="restaurant_id">Name:</label>
+          <input id="restaurant_id" type="text" name="restaurant_id" value="restaurant_id">
+
           <label for="reviewer_name">Name:</label>
           <input id="reviewer_name" type="text" name="name" value="reviewer_name">
 
