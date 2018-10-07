@@ -18,7 +18,7 @@
 
 console.log('We\'re about to create a database!'); // This shows in the console
 
-const dbPromise = idb.open('mws-restaurant-reviews', 7, function(upgradeDb) {
+const dbPromise = idb.open('mws-restaurant-reviews', 8, function(upgradeDb) {
   console.log('Creating the database');
 
 // If there is not an objectstore named 'restaurants', create one, with a primary key of 'id'
@@ -29,9 +29,17 @@ const dbPromise = idb.open('mws-restaurant-reviews', 7, function(upgradeDb) {
 
     restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}); // Create index for neighborhoods
     restaurantsOS.createIndex('cuisine_type', 'cuisine_type', {unique: false}); // Create index for cuisines. TODO Add data
-    restaurantsOS.createIndex('restaurant_id', 'restaurant_id', {unique: false}); // Create index for review. TODO Add data
+    // restaurantsOS.createIndex('restaurant_id', 'restaurant_id', {unique: false}); // Create index for review. TODO Add data
 
     console.log('Creating the restaurants objectstore');
+  }
+
+  if (!upgradeDb.objectStoreNames.contains('reviews', {keypath: 'id'} )) {
+    const reviewsOS = upgradeDb.createObjectStore('keyvalReviews'); // Making the storage
+
+    // reviewsOS.createIndex('reviews', 'reviews', {unique: false}); // Create index for neighborhoods
+
+    console.log('Creating the reviews objectstore');
   }
 
 });
@@ -114,8 +122,8 @@ Fetch all reviews
 static addDBReviews(reviews) {
  for (let i=0; i < reviews.length; i++) {
    dbPromise.then(function(db) {
-   let tx = db.transaction('keyval', 'readwrite'); // Starting the transaction
-   let keyvalStore = tx.objectStore('keyval'); // Build the object to put into the database
+   let tx = db.transaction('keyvalReviews', 'readwrite'); // Starting the transaction
+   let keyvalStore = tx.objectStore('keyvalReviews'); // Build the object to put into the database
    keyvalStore.put(reviews[i],reviews[i].id); // Storing each object into the databate (specifying what to store)
    return tx.complete; // Stop the transaction
    }).catch(function(error){
