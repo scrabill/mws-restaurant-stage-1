@@ -94,20 +94,20 @@ section {
 
 /* ====================== Skip Link ====================== */
 
-a.skip-link { 
-  position: absolute; 
-  left: -10000px; 
-  top: auto; 
-  width: 1px; 
-  height: 1px; 
+a.skip-link {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
-} 
- 
-a:focus.skip-link { 
-  position: static; 
-  width: auto; 
-  height: auto; 
-  } 
+}
+
+a:focus.skip-link {
+  position: static;
+  width: auto;
+  height: auto;
+  }
 
 /* ====================== Navigation ====================== */
 
@@ -433,4 +433,12 @@ button {
 
 #restaurant-hours td {
   color: #666;
+}
+
+.favorite {
+  background-color: pink;
+}
+
+.notFavorite {
+  background-color: grey;
 }
