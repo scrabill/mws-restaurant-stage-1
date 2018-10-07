@@ -99,6 +99,16 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   }
 }
 
+/*
+TODO:
+Take new review from user
+Add it to the Database
+Also, add it to the reviews object store
+User can add a review while offline
+*/
+
+
+
 /**
  * Create all reviews HTML and add them to the webpage.
  */
