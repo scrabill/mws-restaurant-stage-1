@@ -199,7 +199,7 @@ createRestaurantHTML = (restaurant) => {
 
 /*
 Function to toggle between favorite class
-*/
+
 
 const favoriteButton = document.getElementById("favorite"); // Finds the favorite button
 favoriteButton.addEventListener('click', switchClass, false);
@@ -210,7 +210,7 @@ function switchClass() {
   }
 }
 
-
+*/
 
 /**
  * Add markers for current restaurants to the map.
