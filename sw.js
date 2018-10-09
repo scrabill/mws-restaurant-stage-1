@@ -13,7 +13,6 @@ var urlsToCache = [
       "/js/main.js",
       "/js/restaurant_info.js",
       "/js/idb.js",
-      "/js/indexdb.js",
       "/img/undefined.jpg"
      ];
 
