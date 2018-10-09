@@ -1,6 +1,6 @@
 // Start a cache
 
-var cacheName = 'mws-restaurant-v4';
+var cacheName = 'mws-restaurant-v5';
 var urlsToCache = [
       '/',
       '/restaurant.html',
@@ -12,6 +12,8 @@ var urlsToCache = [
       "/js/dbhelper.js",
       "/js/main.js",
       "/js/restaurant_info.js",
+      "/js/idb.js",
+      "/js/indexdb.js",
       "/img/undefined.jpg"
      ];
 
