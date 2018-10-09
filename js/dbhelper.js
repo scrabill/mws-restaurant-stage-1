@@ -46,7 +46,7 @@ const dbPromise = idb.open('mws-restaurant-reviews', 8, function(upgradeDb) {
 
 /*
 Get restaurant data from the object store
-*/
+
 
 dbPromise.then(function(db) {
   var tx = db.transaction('keyval', 'readonly');
@@ -55,10 +55,11 @@ dbPromise.then(function(db) {
 }).then(function(restaurant) {
   console.log('Items by name:', restaurant);
 });
+*/
 
 /*
 Get review data from the object store
-*/
+
 
 dbPromise.then(function(db) {
   var tx = db.transaction('keyvalReviews', 'readonly');
@@ -67,6 +68,7 @@ dbPromise.then(function(db) {
 }).then(function(reviews) {
   console.log('Items by name:', reviews);
 });
+*/
 
 /**
  * Common database helper functions.
@@ -174,7 +176,14 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
     xhr.onerror = (error) => {
     console.log("You're out of luck " + error); // This is triggering when offline
     // TODO: When offline, look for restaurant data in IDB
-    DBHelper.pullFromIDB();
+    // DBHelper.pullFromIDB();
+      dbPromise.then(function(db) {
+        var tx = db.transaction('keyval', 'readonly');
+        var store = tx.objectStore('keyval');
+        return store.getAll();
+      }).then(function(restaurant) {
+        console.log('Items by name:', restaurant);
+      });
     };
     xhr.send();
   }
