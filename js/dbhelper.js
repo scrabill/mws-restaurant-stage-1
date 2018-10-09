@@ -202,7 +202,7 @@ static addDBReviews(reviews) {
       }
     };
     xhr.onerror = (error) => {
-    console.log("You're out of luck " + error);
+    console.log("You're out of luck " + error); // This is triggering when offline
     };
     xhr.send();
   }
