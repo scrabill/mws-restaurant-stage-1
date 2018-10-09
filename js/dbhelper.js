@@ -27,8 +27,8 @@ const dbPromise = idb.open('mws-restaurant-reviews', 8, function(upgradeDb) {
     // var restaurantsOS = upgradeDb.createObjectStore('restaurants', {keypath: 'id'} );
     const restaurantsOS = upgradeDb.createObjectStore('keyval'); // Making the storage
 
-    restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}); // Create index for neighborhoods
-    restaurantsOS.createIndex('cuisine_type', 'cuisine_type', {unique: false}); // Create index for cuisines. TODO Add data
+    // restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}); // Create index for neighborhoods
+    // restaurantsOS.createIndex('cuisine_type', 'cuisine_type', {unique: false}); // Create index for cuisines. TODO Add data
     // restaurantsOS.createIndex('restaurant_id', 'restaurant_id', {unique: false}); // Create index for review. TODO Add data
 
     console.log('Creating the restaurants objectstore');
@@ -132,6 +132,18 @@ static addDBReviews(reviews) {
  }
 }
 
+static pullFromIDB(restaurants) { // Make a new one for reviews
+    // let tx = db.transaction('keyval', 'read'); // Starting the transaction
+    console.log("Reading from keyval");
+    //let keyvalStore = tx.objectStore('keyval');
+    //keyvalStore.get(restaurants[i],restaurants[i].id); // Storing each object into the databate (specifying what to store)
+  //return tx.complete; // Stop the transaction
+    //}).catch(function(error){
+      //console.log("An erorr has occured during the IDB " + error); // Give an error. error = what the error is exactly
+    //})
+  }
+
+
   /*
   TODO
   Pull from web and display first
@@ -166,9 +178,16 @@ static addDBReviews(reviews) {
     xhr.onerror = (error) => {
     console.log("You're out of luck " + error); // This is triggering when offline
     // TODO: When offline, look for restaurant data in IDB
+    DBHelper.pullFromIDB();
     };
     xhr.send();
   }
+
+  /*
+  Function Pull data from IDB when offline
+  */
+
+
 
   /*
   Fetch reviews
