@@ -63,14 +63,6 @@ class DBHelper {
     return `http://localhost:${port}/reviews`;
   }
 
-/*
-  static dbTransaction(db) {
-    let tx = dbPromise.transction('restaurants', 'readwrite');
-    let store = tx.objectstore('restaurants');
-  }
-
-  */
-
   /**
    * Fetch all restaurants.
    */
@@ -78,10 +70,6 @@ class DBHelper {
   static addDB(restaurants) { // Make a new one for reviews
     for (let i=0; i < restaurants.length; i++) { // Look into "closure" and "hoisting", slight differences between ES5 & ES6
       dbPromise.then(function(db) {
-      //console.log(restaurants);
-      //console.log(restaurants.length);
-      //console.log(i);
-      //console.log(restaurants[i]);
       let tx = db.transaction('keyval', 'readwrite'); // Starting the transaction
       let keyvalStore = tx.objectStore('keyval'); // Build the object to put into the database
       keyvalStore.put(restaurants[i],restaurants[i].id); // Storing each object into the databate (specifying what to store)
@@ -97,22 +85,6 @@ class DBHelper {
 
     // TODO: if no connections, pull from IDB (look at using fetch for fallback (IDB.getAll))
     // Small changes, then save, then improve from there
-
-      /*
-      set(key, val) {
-        return dbPromise.then(db => {
-          const tx = db.transaction('keyval', 'readwrite');
-          tx.objectStore('keyval').put(val, key);
-          return tx.complete;
-        });
-      },
-
-      From jake
-
-      */
-
-      // let tx = db.transaction
-
   }
 
 /*
@@ -223,39 +195,6 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
     };
     xhr.send();
   }
-
-
-  /*
-  // Function for adding JSON data to indexDB
-
-  dbPromise(function(db) {
-  var tx = dbPromise.transction('restaurants', 'readwrite');
-  var store = tx.objectstore('restaurants');
-
-  restaurants.add(DATABASE_URL); // ???
-
-});
-  */
-
-  /**
-   * Fetch a review by its ID.
-
-  static fetchReviewsById(id, callback) {
-    // fetch all reviews with proper error handling.
-    DBHelper.fetchReviews((error, reviews) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        const reviews = reviews.filter(r => r.id == id); // Find all that match with filter, not just the first one
-        if (reviews) { // Got the reviews
-          callback(null, reviews);
-        } else { // Restaurant does not exist in the database
-          callback('Reviews does not exist', null);
-        }
-      }
-    });
-  }
-   */
 
   /**
    * Fetch a restaurant by its ID.
