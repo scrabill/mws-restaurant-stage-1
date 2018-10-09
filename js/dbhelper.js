@@ -132,51 +132,16 @@ static addDBReviews(reviews) {
  }
 }
 
-
-  // let tx = dbPromise.transaction('restaurants', 'readwrite');
-//   let store = tx.objectstore('restaurants');
-  // dbTransaction.add(restaurants);
+  /*
+  TODO
+  Pull from web and display first
+  Display data, then write to the Database
+  When someone is asking for a restaurant, check the database first, if not, go to network
+  Update database with changes from the network
+  CATCH if the server returns nothing (error handling)
+  */
 
   static fetchRestaurants(callback) {
-
-    /*
-    Pull from web and display first
-    Display data, then write to the Database
-    When someone is asking for a restaurant, check the database first, if not, go to network
-    Update database with changes from the network
-    CATCH if the server returns nothing (error handling)
-    */
-
-
-
-    /*
-    dbPromise MUST be defined here, somehow...
-    */
-
-  //  const dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
-
-  //  });
-
-    /* For reference from above
-
-    var dbPromise = idb.open('mws-restaurant-reviews', 6, function(upgradeDb) {
-      console.log('Creating the database'); // This does not :(
-
-    // If there is not an objectstore named 'restaurants', create one, with a primary key of 'id'
-
-      if (!upgradeDb.objectStoreNames.contains('restaurants', {keypath: 'id'} )) {
-        var restaurantsOS = upgradeDb.createObjectStore('restaurants');
-
-        restaurantsOS.createIndex('neighborhood', 'neighborhood', {unique: false}) // Create index for neighborhoods
-        restaurantsOS.createIndex('cuisine', 'cuisine', {unique: false}) // Create index for cuisines
-
-        console.log('Creating the restaurants objectstore'); // This does not either
-      }
-    });
-
-    */
-
-
     let xhr = new XMLHttpRequest();
     xhr.open('GET', DBHelper.DATABASE_URL); // Get data from the sails server
     // console.log('Got data from the server!'); // This fires twice?
@@ -186,11 +151,8 @@ static addDBReviews(reviews) {
         const json = JSON.parse(xhr.responseText); // This is the actual data array
         const restaurants = json; // Fix this later
         // console.log(json); // This fires twice = OK, can improve this later in main.js
-
         // dbTransaction.add(restaurants);
         DBHelper.addDB(restaurants);
-
-
         callback(null, restaurants);
       }
       // if (xhr.status === 500) {
@@ -203,6 +165,7 @@ static addDBReviews(reviews) {
     };
     xhr.onerror = (error) => {
     console.log("You're out of luck " + error); // This is triggering when offline
+    // TODO: When offline, look for restaurant data in IDB
     };
     xhr.send();
   }
