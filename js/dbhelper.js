@@ -44,6 +44,30 @@ const dbPromise = idb.open('mws-restaurant-reviews', 8, function(upgradeDb) {
 
 });
 
+/*
+Get restaurant data from the object store
+*/
+
+dbPromise.then(function(db) {
+  var tx = db.transaction('keyval', 'readonly');
+  var store = tx.objectStore('keyval');
+  return store.getAll();
+}).then(function(restaurant) {
+  console.log('Items by name:', restaurant);
+});
+
+/*
+Get review data from the object store
+*/
+
+dbPromise.then(function(db) {
+  var tx = db.transaction('keyvalReviews', 'readonly');
+  var store = tx.objectStore('keyvalReviews');
+  return store.getAll();
+}).then(function(reviews) {
+  console.log('Items by name:', reviews);
+});
+
 /**
  * Common database helper functions.
  */
