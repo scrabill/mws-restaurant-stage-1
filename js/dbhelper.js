@@ -181,8 +181,9 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
         var tx = db.transaction('keyval', 'readonly');
         var store = tx.objectStore('keyval');
         return store.getAll();
-      }).then(function(restaurant) {
-        console.log('Items by name:', restaurant);
+      }).then(function(restaurants) {
+        console.log('Items by name:', restaurants);
+        callback(restaurants, null);
       });
     };
     xhr.send();
