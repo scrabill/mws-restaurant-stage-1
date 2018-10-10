@@ -34,16 +34,46 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.match(event.request)
+        caches.match(event.request, {ignoreSearch: true})
         .then(function(response) {
             if(response){
                 return response
             }
             // not in cache, return from network
-            return fetch(event.request, {credentials: 'include'});
+            return fetch(event.request, {credentials: 'include'})
+            .then(function(result) {
+              return caches.open(cacheName).then(function(cache){
+                cache.put(event.request, result.clone()); // Returns to ultimate result of return fetch. Each layer returns a result out to the previous layer
+                return result;
+              })
+            });
         })
     );
 });
+
+/**
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request, {ignoreSearch: true})
+        .then(function(response) {
+            if(response){
+                return response
+            }
+            // not in cache, return from network
+            return fetch(event.request, {credentials: 'include'})
+            .then(function(result) {
+              return caches.open(cacheName).then(function(cache){
+                cache.put(event.request, result.clone()); // Returns to ultimate result of return fetch. Each layer returns a result out to the previous layer
+                return result;
+              })
+            });
+        })
+    );
+});
+
+From Doug
+
+/
 
 // Source: https://itnext.io/service-workers-your-first-step-towards-progressive-web-apps-pwa-e4e11d1a2e85
 
