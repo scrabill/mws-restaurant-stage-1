@@ -165,8 +165,10 @@ createRestaurantHTML = (restaurant) => {
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more);
 
-  const favorite = document.createElement('p');
-  favorite.innerHTML = restaurant.is_favorite;
+  const favorite = document.createElement('button');
+  favorite.innerHTML = 'restaurant.is_favorite';
+  favorite.setAttribute('id', 'favorite');
+  //myPara.setAttribute("id", "id_you_like");
   li.append(favorite);
 
   return li
