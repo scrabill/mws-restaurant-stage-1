@@ -67,6 +67,11 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML();
   }
+
+  // Favorite status
+  // const is_favorite = 
+
+
   // fill reviews
 
     DBHelper.fetchReviews(restaurant.id, (error, reviews) => {
