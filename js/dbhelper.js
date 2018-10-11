@@ -226,9 +226,17 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
     };
     xhr.onerror = (error) => {
     console.log("You're out of luck " + error);
-    };
-    xhr.send();
-  }
+    dbPromise.then(function(db) {
+      var tx = db.transaction('keyvalReviews', 'readonly');
+      var store = tx.objectStore('keyvalReviews');
+      return store.getAll();
+    }).then(function(reviews) {
+      console.log('Items by name:', reviews);
+      callback(reviews, null);
+    });
+  };
+  xhr.send();
+}
 
   /**
    * Fetch a restaurant by its ID.
