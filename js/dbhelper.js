@@ -378,3 +378,17 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
   }
 
 }
+
+
+/*
+Toggle favorites
+*/
+
+const favoriteButton = document.getElementById("favorite"); // Finds the favorite button
+favoriteButton.addEventListener('click', switchClass, false);
+
+function switchClass() {
+  if (favoriteButton.classList) {
+    favoriteButton.classList.toggle("favorite");
+  }
+}
