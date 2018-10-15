@@ -168,6 +168,7 @@ createRestaurantHTML = (restaurant) => {
   const favorite = document.createElement('button');
   favorite.innerHTML = '❤';
   favorite.setAttribute('class', 'favorite');
+  favorite.setAttribute('id', restaurant.id); // Add id=restaurant.id attribute
   // console.log(restaurant.is_favorite); // Print favorite status (true/false) to console
   const fave_status = restaurant.is_favorite;
   // console.log(fave_status); // Print favorite status (true/false) to console
@@ -176,6 +177,7 @@ createRestaurantHTML = (restaurant) => {
     console.log(restaurant.id + " is a favorite");
   } else {
     console.log(restaurant.id + " is not a favorite");
+    favorite.setAttribute('style', 'color:blue');
   }
 
   //myPara.setAttribute("id", "id_you_like");
