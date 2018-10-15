@@ -377,12 +377,23 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
     return marker;
   }
 
+  /*
+  Toggle Favorites
+  */
+
+  static switchClass(restaurant, id) {
+    const favoriteButton = document.getElementById(restaurant.id); // Finds the favorite button
+    if (favoriteButton.classList) {
+      favoriteButton.classList.toggle("favorite");
+    }
+  }
+
 }
 
 
 /*
 Toggle favorites
-*/
+
 
 const favoriteButton = document.getElementById("favorite"); // Finds the favorite button
 favoriteButton.addEventListener('click', switchClass, false);
@@ -392,3 +403,4 @@ function switchClass() {
     favoriteButton.classList.toggle("favorite");
   }
 }
+*/

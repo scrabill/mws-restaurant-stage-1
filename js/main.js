@@ -180,6 +180,8 @@ createRestaurantHTML = (restaurant) => {
     favorite.setAttribute('style', 'color:blue');
   }
 
+  favorite.onlick = DBHelper.switchClass();
+
   //myPara.setAttribute("id", "id_you_like");
   li.append(favorite);
 
