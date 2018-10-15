@@ -168,7 +168,7 @@ createRestaurantHTML = (restaurant) => {
   const favorite = document.createElement('button');
   favorite.innerHTML = '❤';
   favorite.setAttribute('class', 'favorite');
-  favorite.setAttribute('id', restaurant.id); // Add id=restaurant.id attribute
+  favorite.setAttribute('id', 'favorite-' + restaurant.id); // Add id=restaurant.id attribute
   // console.log(restaurant.is_favorite); // Print favorite status (true/false) to console
   const fave_status = restaurant.is_favorite;
   // console.log(fave_status); // Print favorite status (true/false) to console
@@ -180,7 +180,8 @@ createRestaurantHTML = (restaurant) => {
     favorite.setAttribute('style', 'color:blue');
   }
 
-  favorite.onlick = DBHelper.switchClass();
+  // favorite.onlick = DBHelper.switchClass();
+  favorite.setAttribute('onclick', 'DBHelper.switchClass(' + restaurant.id + ')')
 
   //myPara.setAttribute("id", "id_you_like");
   li.append(favorite);

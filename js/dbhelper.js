@@ -379,14 +379,22 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
 
   /*
   Toggle Favorites
-  */
+
 
   static switchClass(restaurant, id) {
-    const favoriteButton = document.getElementById(restaurant.id); // Finds the favorite button
+    const favoriteButton = document.getElementById('favorite-' + restaurant.id); // Finds the favorite button
+    console.log("This element has an ID name of: " + "favorite-" + restaurant.id);
     if (favoriteButton.classList) {
       favoriteButton.classList.toggle("favorite");
     }
   }
+  */
+
+  static switchClass(id) {
+   const favoriteButton = document.getElementById('favorite-' + id);
+   console.log("Clicked on ", favoriteButton);
+   favoriteButton.classList.toggle("favorite");
+ }
 
 }
 
