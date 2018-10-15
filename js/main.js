@@ -167,7 +167,7 @@ createRestaurantHTML = (restaurant) => {
 
   const favorite = document.createElement('button');
   favorite.innerHTML = '❤';
-  favorite.setAttribute('id', 'favorite');
+  favorite.setAttribute('class', 'favorite');
   //myPara.setAttribute("id", "id_you_like");
   li.append(favorite);
 
