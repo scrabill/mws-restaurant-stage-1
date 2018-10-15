@@ -168,6 +168,7 @@ createRestaurantHTML = (restaurant) => {
   const favorite = document.createElement('button');
   favorite.innerHTML = '❤';
   favorite.setAttribute('class', 'favorite');
+  console.log(restaurant.is_favorite); // Print favorite status (true/false) to console
   //myPara.setAttribute("id", "id_you_like");
   li.append(favorite);
 
