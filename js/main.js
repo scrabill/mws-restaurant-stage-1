@@ -177,7 +177,7 @@ createRestaurantHTML = (restaurant) => {
     console.log(restaurant.id + " is a favorite");
   } else {
     console.log(restaurant.id + " is not a favorite");
-    favorite.setAttribute('style', 'color:blue');
+    // favorite.setAttribute('style', 'color:blue');
   }
 
   // favorite.onlick = DBHelper.switchClass();
