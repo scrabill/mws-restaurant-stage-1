@@ -394,7 +394,18 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
    const favoriteButton = document.getElementById('favorite-' + id);
    console.log("Clicked on ", favoriteButton);
    favoriteButton.classList.toggle("favorite");
+   DBHelper.updateFavorite();
  }
+
+   /*
+   Write change in status back to the Database
+   */
+
+   static updateFavorite(id, is_favorite) {
+     const url = 'DBHelper.DATABASE_URL/' + id + '/?is_favorite=true';
+     const method = "PUT";
+     console.log(url);
+   }
 
 }
 

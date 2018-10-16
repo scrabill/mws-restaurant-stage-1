@@ -439,25 +439,27 @@ button {
   background-color: lightgrey;
   font-size: 30px;
 }
-
+/*
 .favorite {
   height: 50px
   width: 50px;
   color: red;
-}
+}*/
 
 /*
 Styles if the restuarant is a favorite
-*/
+
 
 .favorite_true {
   background-color: green;
 }
+*/
 
 /*
 Styles if the restuarant is NOT a favorite
-*/
+
 
 .favorite_false {
   background-color: magenta;
 }
+*/
