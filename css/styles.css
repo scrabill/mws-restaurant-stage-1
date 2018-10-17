@@ -178,6 +178,19 @@ nav h1 a {
   background-color: #ccc;
 }
 
+#static-map {
+  width: 100%;
+  height: 50%;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
 @media screen AND (max-width: 500px) {
   #map {
     height: 250px;
