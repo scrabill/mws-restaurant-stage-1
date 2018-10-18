@@ -383,12 +383,14 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
 
   static switchMap() {
     console.log("The static map was clicked");
-   // const favoriteButton = document.getElementById('favorite-' + id);
-   // // const fave_status = restaurant.is_favorite;
-   // console.log("Clicked on ", favoriteButton);
-   // favoriteButton.classList.toggle("favorite"); // Add/remove favorite class
-   // DBHelper.updateFavorite();
-   // console.log("Is Favorite?" + fave_status);
+    const staticMapImg = document.getElementById('static-map');
+    const liveMapImg = document.getElementById('map');
+    if (liveMapImg.className === 'hide') { // If the live map is hidden
+      liveMapImg.className = 'show'; // Show the live map
+      staticMapImg.className = 'hide'; // Hide the static one
+    } else {
+      liveMapImg.className = 'hide'; // If in doubt, hide the live map for now
+    }
  }
 
   /*
