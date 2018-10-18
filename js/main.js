@@ -68,6 +68,13 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 }
 
 /**
+Load static map first
+**/
+
+const staticMapImg = document.getElementById('static-map');
+staticMapImg.setAttribute('onclick', 'DBHelper.switchMap()');
+
+/**
  * Initialize Google map, called from HTML.
  */
 window.initMap = () => {

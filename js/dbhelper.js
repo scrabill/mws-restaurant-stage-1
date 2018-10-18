@@ -378,6 +378,20 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
   }
 
   /*
+  Toggle static and live map
+  */
+
+  static switchMap() {
+    console.log("The static map was clicked");
+   // const favoriteButton = document.getElementById('favorite-' + id);
+   // // const fave_status = restaurant.is_favorite;
+   // console.log("Clicked on ", favoriteButton);
+   // favoriteButton.classList.toggle("favorite"); // Add/remove favorite class
+   // DBHelper.updateFavorite();
+   // console.log("Is Favorite?" + fave_status);
+ }
+
+  /*
   Toggle Favorites
 
 
