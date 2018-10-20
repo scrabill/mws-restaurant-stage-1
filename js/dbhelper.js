@@ -411,7 +411,7 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
    // const fave_status = restaurant.is_favorite;
    console.log("Clicked on ", favoriteButton);
    favoriteButton.classList.toggle("favorite"); // Add/remove favorite class
-   DBHelper.updateFavorite();
+   // DBHelper.updateFavorite();
    if (id === 1) {
      DBHelper.testFunction();
    }
@@ -461,21 +461,21 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
        xhr.send();
      }
 
-   static updateFavorite(id, is_favorite) {
-     console.log("updateFavorite function is running");
-     const url = 'http://localhost:1337/restaurants/1/?is_favorite=true';
-     const method = "PUT";
-     let postBody = {
-       "is_favorite": null,
-     }
-
-
-     // When the status is changed, write it to the database and IDB
-     // "is_favorite": false
-
-     // DBHelper.addFavorite(url, method);
-     // console.log(url);
-   }
+   // static updateFavorite(id, is_favorite) {
+   //   console.log("updateFavorite function is running");
+   //   const url = 'http://localhost:1337/restaurants/1/?is_favorite=true';
+   //   const method = "PUT";
+   //   let postBody = {
+   //     "is_favorite": null,
+   //   }
+   //
+   //
+   //   // When the status is changed, write it to the database and IDB
+   //   // "is_favorite": false
+   //
+   //   // DBHelper.addFavorite(url, method);
+   //   // console.log(url);
+   // }
 
 }
 
