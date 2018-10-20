@@ -493,3 +493,9 @@ function switchClass() {
   }
 }
 */
+
+/*
+TODOS so that I can pass!
+- Users are able to mark a restaurant as a favorite, this toggle is visible in the application. Favorite status writes to the database and IDB
+- User is able to add a review to a restaurant while offline and the review is sent to the server when connectivity is re-established.
+*/
