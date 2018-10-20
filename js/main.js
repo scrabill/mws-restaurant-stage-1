@@ -184,9 +184,11 @@ createRestaurantHTML = (restaurant) => {
     console.log(restaurant.id + " is a favorite");
     //favorite.setAttribute('style', 'background-color:orange;color:white');
     favorite.setAttribute('class', 'favorite');
-  } else {
+  } else if (fave_status == "false" || fave_status == false) {
     console.log(restaurant.id + " is not a favorite");
     //favorite.setAttribute('style', 'background-color:grey;color:darkgrey');
+  } else {
+    console.log(restaurant.id + " favorite status is undefined");
   }
 
   // favorite.onlick = DBHelper.switchClass();
