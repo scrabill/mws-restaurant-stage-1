@@ -406,28 +406,57 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
   }
   */
 
-  static switchClass(id, restaurant) {
+  static switchClass(id) {
    const favoriteButton = document.getElementById('favorite-' + id);
-   // const fave_status = restaurant.is_favorite;
+   // // const fave_status = restaurant.is_favorite;
    console.log("Clicked on ", favoriteButton);
    favoriteButton.classList.toggle("favorite"); // Add/remove favorite class
    // DBHelper.updateFavorite();
-   if (id === 1) {
-     DBHelper.testFunction();
-   }
+   // console.log("Favorite status is: ", restaurant.is_favorite);
 
+   if (favoriteButton.classList == "favorite") {
+     console.log("true");
+     console.log("The ID is: " + id);
+     DBHelper.testFunction(id, true);
+   } else {
+     console.log("false");
+     DBHelper.testFunction(id, false);
+   }
    // console.log("Is Favorite?" + fave_status);
  }
+
+ /*
+This code came with some help from laura
+static switchClass(id) {
+   const favoriteButton = document.getElementById('favorite-' + id);
+   // // const fave_status = restaurant.is_favorite;
+   console.log("Clicked on ", favoriteButton);
+   favoriteButton.classList.toggle("favorite"); // Add/remove favorite class
+   // DBHelper.updateFavorite();
+   // console.log("Favorite status is: ", restaurant.is_favorite);
+
+   if (favoriteButton.classList == "favorite") {
+     console.log("true");
+     DBHelper.testFunction(id, true);
+   } else {
+     console.log("false");
+     DBHelper.testFunction(id, false);
+   }
+   // console.log("Is Favorite?" + fave_status);
+ }
+
+ */
 
    /*
    Write change in status back to the Database
    */
-   static testFunction(callback, id) {
+   static testFunction(id, status) {
      console.log("testFunction has been triggered");
      let data = {};
      let xhr = new XMLHttpRequest();
      //xhr.open('GET', 'http://localhost:1337/restaurants/?is_favorite=false'); // Get data from the sails server
-     xhr.open('PUT', 'http://localhost:1337/restaurants/1/?is_favorite=true');
+     // xhr.open('PUT', 'http://localhost:1337/restaurants/1/?is_favorite=true');
+     xhr.open('PUT', 'http://localhost:1337/restaurants/'+ id + '/?is_favorite=' + status); // from laura
      // console.log('http://localhost:1337/restaurants/?is_favorite=false'); // http://localhost:1337/restaurants  `${DBHelper.DATABASE_URL_REVIEWS}?restaurant_id=${id}`
      xhr.onload = () => {
        if (xhr.status === 200) { // Got a success response from server!
@@ -442,7 +471,7 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
          }
          else { // Oops!. Got an error from server.
            const error = (`Request failed. Returned status of ${xhr.status}`);
-           callback(error, null);
+           // callback(error, null);
          }
        };
        // xhr.onerror = (error) => {
