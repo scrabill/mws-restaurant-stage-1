@@ -134,27 +134,32 @@ static addDBReviews(reviews) {
 Update restaurant data in IDB, if what is on the sails server has been changed
 */
 
-static updateIDB(restaurants, status) {
-  let tx = db.transaction('keyval', 'readwrite');
-  let keyvalStore = tx.objectStore('keyval');
+static updateIDB(id, status) {
+  console.log("Running updateIDB function"); // This works
 
-  keyvalStore.openCursor().onsuccess = function(event) {
-    const cursor = event.target.result;
-    if (cursor) {
-      if (cursor.value.is_favorite === false || cursor.value.is_favorite === true) {
-        const updateData = cursor.value;
-        updateData.is_favorite = status; // How do I get the new value if is_favorite, so that I can update the IDB value?
+  dbPromise.then(function(db) {
+    const tx = db.transaction('keyval', 'readwrite');
+    const keyvalStore = tx.objectStore('keyval');
 
-        const request = cursor.update(updateData);
-        request.onsuccess = function() {
-          console.log("IDB has been updated");
+    keyvalStore.openCursor().onsuccess = function(event) {
+      const cursor = event.target.result;
+      console.log(event.target.result);
+      if (cursor) {
+        if (cursor.value.is_favorite === false || cursor.value.is_favorite === true) {
+          const updateData = cursor.value;
+          updateData.is_favorite = status; // How do I get the new value if is_favorite, so that I can update the IDB value?
+
+          const request = cursor.update(updateData);
+          request.onsuccess = function() {
+            console.log("IDB has been updated");
+          };
         };
-      };
-    } else {
-      console.log("This is the else statment being triggered");
-    }
-  };
-
+      } else {
+        console.log("This is the else statment being triggered");
+      }
+    };
+  });
+}
   /*
 
   Source: https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/update
@@ -200,7 +205,7 @@ static updateIDB(restaurants, status) {
   //     console.log("An error has occured during the IDB " + error); // Give an error. error = what the error is exactly
   //   })
   // }
-}
+
 
 
 
