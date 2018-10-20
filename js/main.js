@@ -183,7 +183,7 @@ createRestaurantHTML = (restaurant) => {
   if (fave_status == "true") {
     console.log(restaurant.id + " is a favorite");
     //favorite.setAttribute('style', 'background-color:orange;color:white');
-    favorite.setAttribute('class', 'favorite');
+    favorite.setAttribute('class', 'favorite'); // is the restaurant is a favorite, add favorite styling
   } else if (fave_status == "false" || fave_status == false) {
     console.log(restaurant.id + " is not a favorite");
     //favorite.setAttribute('style', 'background-color:grey;color:darkgrey');

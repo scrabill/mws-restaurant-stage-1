@@ -452,12 +452,10 @@ button {
   background-color: lightgrey;
   font-size: 30px;
 }
-/*
+
 .favorite {
-  height: 50px
-  width: 50px;
-  color: red;
-}*/
+  background-color: blue;
+}
 
 /*
 Styles if the restuarant is a favorite
