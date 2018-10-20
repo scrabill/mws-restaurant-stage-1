@@ -230,6 +230,26 @@ createRestaurantHTML = (restaurant) => {
 }
 
 /*
+Update favorite status
+*/
+
+// updateFavoriteStatus = (restaurant) => {
+//   const getFavoriteButton2 = document.getElementById('favorite-' + restaurant.id);
+//   getFavoriteButton2.setAttribute('onclick', anotherTestFunction());
+//   // console.log("test");
+// }
+//
+// anotherTestFunction = (restaurant) => {
+//   console.log("Is this working?");
+// }
+
+// const getFavoriteButton = document.getElementById('favorite-' + restaurant.id);
+// getFavoriteButton.setAttribute('onclick', 'DBHelper.switchMap()');
+
+// const staticMapImg = document.getElementById('static-map');
+// staticMapImg.setAttribute('onclick', 'DBHelper.switchMap()');
+
+/*
 Function to toggle between favorite class
 
 
