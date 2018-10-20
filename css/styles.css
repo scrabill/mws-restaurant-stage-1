@@ -180,7 +180,9 @@ nav h1 a {
 
 #static-map {
   width: 100%;
-  height: 50%;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .show {
