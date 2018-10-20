@@ -412,15 +412,58 @@ static pullFromIDB(restaurants) { // Make a new one for reviews
    console.log("Clicked on ", favoriteButton);
    favoriteButton.classList.toggle("favorite"); // Add/remove favorite class
    DBHelper.updateFavorite();
+   if (id === 1) {
+     DBHelper.testFunction();
+   }
+
    // console.log("Is Favorite?" + fave_status);
  }
 
    /*
    Write change in status back to the Database
    */
+   static testFunction(callback, id) {
+     console.log("testFunction has been triggered");
+     let data = {};
+     let xhr = new XMLHttpRequest();
+     //xhr.open('GET', 'http://localhost:1337/restaurants/?is_favorite=false'); // Get data from the sails server
+     xhr.open('PUT', 'http://localhost:1337/restaurants/1/?is_favorite=true');
+     // console.log('http://localhost:1337/restaurants/?is_favorite=false'); // http://localhost:1337/restaurants  `${DBHelper.DATABASE_URL_REVIEWS}?restaurant_id=${id}`
+     xhr.onload = () => {
+       if (xhr.status === 200) { // Got a success response from server!
+           console.log('Server response is ' + xhr.status);
+           const json = JSON.parse(xhr.responseText); // This is the actual data array
+           const restaurants = json; // Fix this later
+           // const restaurant = restaurants.find(r => r.id == id);
+           // callback(null, restaurants);
+           console.log(restaurants);
+           // is_favorite: false
+
+         }
+         else { // Oops!. Got an error from server.
+           const error = (`Request failed. Returned status of ${xhr.status}`);
+           callback(error, null);
+         }
+       };
+       // xhr.onerror = (error) => {
+       // console.log("You're out of luck " + error); // This is triggering when offline
+       // // TODO: When offline, look for restaurant data in IDB
+       // // DBHelper.pullFromIDB();
+       //   dbPromise.then(function(db) {
+       //     var tx = db.transaction('keyval', 'readonly');
+       //     var store = tx.objectStore('keyval');
+       //     return store.getAll();
+       //   }).then(function(restaurants) {
+       //     console.log('Items by name:', restaurants);
+       //     callback(restaurants, null);
+       //   });
+       // };
+       xhr.send();
+     }
 
    static updateFavorite(id, is_favorite) {
-     const url = 'DBHelper.DATABASE_URL/' + id + '/?is_favorite=true';
+     console.log("updateFavorite function is running");
+     const url = 'http://localhost:1337/restaurants/1/?is_favorite=true';
      const method = "PUT";
      let postBody = {
        "is_favorite": null,
