@@ -180,7 +180,7 @@ createRestaurantHTML = (restaurant) => {
   const fave_status = restaurant.is_favorite;
   // console.log(fave_status); // Print favorite status (true/false) to console
 
-  if (fave_status === true) {
+  if (fave_status == "true") {
     console.log(restaurant.id + " is a favorite");
     //favorite.setAttribute('style', 'background-color:orange;color:white');
     favorite.setAttribute('class', 'favorite');
