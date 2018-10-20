@@ -130,6 +130,80 @@ static addDBReviews(reviews) {
  }
 }
 
+/*
+Update restaurant data in IDB, if what is on the sails server has been changed
+*/
+
+static updateIDB(restaurants, status) {
+  let tx = db.transaction('keyval', 'readwrite');
+  let keyvalStore = tx.objectStore('keyval');
+
+  keyvalStore.openCursor().onsuccess = function(event) {
+    const cursor = event.target.result;
+    if (cursor) {
+      if (cursor.value.is_favorite === false || cursor.value.is_favorite === true) {
+        const updateData = cursor.value;
+        updateData.is_favorite = status; // How do I get the new value if is_favorite, so that I can update the IDB value?
+
+        const request = cursor.update(updateData);
+        request.onsuccess = function() {
+          console.log("IDB has been updated");
+        };
+      };
+    } else {
+      console.log("This is the else statment being triggered");
+    }
+  };
+
+  /*
+
+  Source: https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/update
+
+  function updateResult() {
+    list.innerHTML = '';
+    const transaction = db.transaction(['rushAlbumList'], 'readwrite');
+    const objectStore = transaction.objectStore('rushAlbumList');
+
+    objectStore.openCursor().onsuccess = function(event) {
+      const cursor = event.target.result;
+      if (cursor) {
+        if (cursor.value.albumTitle === 'A farewell to kings') {
+          const updateData = cursor.value;
+
+          updateData.year = 2050;
+          const request = cursor.update(updateData);
+          request.onsuccess = function() {
+            console.log('A better album year?');
+          };
+        };
+
+        const listItem = document.createElement('li');
+        listItem.innerHTML = '<strong>' + cursor.value.albumTitle + '</strong>, ' + cursor.value.year;
+        list.appendChild(listItem);
+        cursor.continue();
+      } else {
+        console.log('Entries displayed.');
+      }
+    };
+  };
+
+  */
+
+
+  // for (let i=0; i < restaurants.length; i++) { // Look into "closure" and "hoisting", slight differences between ES5 & ES6
+  //   dbPromise.then(function(db) {
+  //   let tx = db.transaction('keyval', 'readwrite'); // Starting the transaction
+  //   let keyvalStore = tx.objectStore('keyval'); // Build the object to put into the database
+  //   keyvalStore.put(restaurants[i],restaurants[i].id); // Storing each object into the databate (specifying what to store)
+  //   return tx.complete; // Stop the transaction
+  //   }).catch(function(error){
+  //     console.log("An error has occured during the IDB " + error); // Give an error. error = what the error is exactly
+  //   })
+  // }
+}
+
+
+
 static pullFromIDB(restaurants) { // Make a new one for reviews
     // let tx = db.transaction('keyval', 'read'); // Starting the transaction
     console.log("Reading from keyval");
@@ -467,6 +541,8 @@ static switchClass(id) {
            // callback(null, restaurants);
            console.log(restaurants);
            // is_favorite: false
+           console.log("Is restaurant " + id + " a favorite? " + status)
+           DBHelper.updateIDB(id, status);
 
          }
          else { // Oops!. Got an error from server.
