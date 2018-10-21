@@ -69,7 +69,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   }
 
   // Favorite status
-  // const is_favorite = 
+  // const is_favorite =
 
 
   // fill reviews
@@ -159,6 +159,15 @@ createReviewHTML = (review) => {
 
   return li;
 }
+
+/*
+Posts new reviews
+*/
+
+const postReview = document.getElementById("reviewForm");
+postReview.setAttribute('action', 'http://localhost:1337/reviews/');
+postReview.setAttribute('method', 'post');
+
 
 /**
  * Add restaurant name to the breadcrumb navigation menu
