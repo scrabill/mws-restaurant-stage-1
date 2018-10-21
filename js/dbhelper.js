@@ -222,21 +222,6 @@ static updateIDB(id, status) {
   //   })
   // }
 
-
-
-
-static pullFromIDB(restaurants) { // Make a new one for reviews
-    // let tx = db.transaction('keyval', 'read'); // Starting the transaction
-    console.log("Reading from keyval");
-    //let keyvalStore = tx.objectStore('keyval');
-    //keyvalStore.get(restaurants[i],restaurants[i].id); // Storing each object into the databate (specifying what to store)
-  //return tx.complete; // Stop the transaction
-    //}).catch(function(error){
-      //console.log("An erorr has occured during the IDB " + error); // Give an error. error = what the error is exactly
-    //})
-  }
-
-
   /*
   TODO
   Pull from web and display first
