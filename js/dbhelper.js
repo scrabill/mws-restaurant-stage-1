@@ -140,6 +140,14 @@ static updateIDB(id, status) {
   dbPromise.then(function(db) {
     const tx = db.transaction('keyval', 'readwrite');
     const keyvalStore = tx.objectStore('keyval');
+    const myIndex = keyvalStore.index('is_favorite'); 
+
+    console.log("Opening transaction"); // this works
+    console.log("Restuarant " + id + " was clicked on and the favorite status is " + status) // this works
+
+    const request = keyvalStore.openCursor();
+
+    console.log("Opening the keyval object store");
 
     keyvalStore.openCursor().onsuccess = function(event) {
       const cursor = event.target.result;
