@@ -139,33 +139,41 @@ static updateIDB(id, status) {
 
   dbPromise.then(function(db) {
     const tx = db.transaction('keyval', 'readwrite');
-    const keyvalStore = tx.objectStore('keyval');
-    const myIndex = keyvalStore.index('is_favorite'); 
+    const objectStore = tx.objectStore('keyval');
+  //   const myIndex = keyvalStore.index('is_favorite');
 
     console.log("Opening transaction"); // this works
     console.log("Restuarant " + id + " was clicked on and the favorite status is " + status) // this works
 
-    const request = keyvalStore.openCursor();
-
-    console.log("Opening the keyval object store");
-
-    keyvalStore.openCursor().onsuccess = function(event) {
+    objectStore.openCursor().onsuccess = function(event) { // Cursor is not opening up
       const cursor = event.target.result;
-      console.log(event.target.result);
       if (cursor) {
-        if (cursor.value.is_favorite === false || cursor.value.is_favorite === true) {
-          const updateData = cursor.value;
-          updateData.is_favorite = status; // How do I get the new value if is_favorite, so that I can update the IDB value?
-
-          const request = cursor.update(updateData);
-          request.onsuccess = function() {
-            console.log("IDB has been updated");
-          };
-        };
-      } else {
-        console.log("This is the else statment being triggered");
+        if (cursor.value.id === 10) // testing using ID of 10
+        console.log("Opening the keyval object store");
+        cursor.continue();
       }
-    };
+
+    }
+
+
+
+    // keyvalStore.openCursor().onsuccess = function(event) {
+    //   const cursor = event.target.result;
+    //   console.log(event.target.result);
+    //   if (cursor) {
+    //     if (cursor.value.is_favorite === false || cursor.value.is_favorite === true) {
+    //       const updateData = cursor.value;
+    //       updateData.is_favorite = status; // How do I get the new value if is_favorite, so that I can update the IDB value?
+    //
+    //       const request = cursor.update(updateData);
+    //       request.onsuccess = function() {
+    //         console.log("IDB has been updated");
+    //       };
+    //     };
+    //   } else {
+    //     console.log("This is the else statment being triggered");
+    //   }
+    // };
   });
 }
   /*
