@@ -149,7 +149,7 @@ static updateFavoriteInIDB(id, status, restaurants) { // Make a new one for revi
   let tx = db.transaction('keyval', 'readwrite');
   let keyvalStore = tx.objectStore('keyval');
   console.log(restaurants);
-  keyvalStore.put(restaurants);
+  keyvalStore.put(restaurants[id]);
   return tx.complete;
   }).catch(function(error){
       console.log("Whooops" + error); // Give an error. error = what the error is exactly
