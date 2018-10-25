@@ -144,19 +144,20 @@ static updateFavoriteInIDB(id, status, restaurants) { // Make a new one for revi
   // let keyvalStore = tx.objectStore('keyval'); // Build the object to put into the database
 
   console.log("updateFavoriteInIDB function is running");
-    dbPromise.then(function(db) {
-      var tx = db.transaction('keyval', 'readwrite');
-      var store = tx.objectStore('keyval');
-      // var i = id;
-      console.log("The object store has been opened: " + id + " " + status);
-      console.log(restaurants.is_favorite);
 
-      store.put(restaurants.is_favorite);
-      return tx.complete;
+  dbPromise.then(function(db) {
+  let tx = db.transaction('keyval', 'readwrite');
+  let keyvalStore = tx.objectStore('keyval');
+  console.log(restaurants);
+  keyvalStore.put(restaurants);
+  return tx.complete;
+  }).catch(function(error){
+      console.log("Whooops" + error); // Give an error. error = what the error is exactly
+  })
+  // console.log("The object store has been opened: " + id + " " + status);
+  // console.log(restaurants.is_favorite);
       // store.put(restaurants[id].is_favorite.status); // Put the new status here
-    }).catch(function(error){
-        console.log("Whooops" + error); // Give an error. error = what the error is exactly
-    })
+
   // keyvalStore.put(restaurants[i],restaurants[i].id); // Storing each object into the databate (specifying what to store)
   // return tx.complete; // Stop the transaction
   // }).catch(function(error){
