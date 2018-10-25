@@ -131,29 +131,63 @@ static addDBReviews(reviews) {
 }
 
 /*
+Update favorite status in IDB
+*/
+
+static updateFavoriteInIDB(id, status, restaurants) { // Make a new one for reviews
+  console.log("updateFavoriteInIDB function is running");
+  // let status = (restaurant.is_favorite == true) ? false : true;
+
+  console.log("updateFavoriteInIDB: " + id + " " + status);
+  // dbPromise.then(function(db) {
+  // let tx = db.transaction('keyval', 'readwrite'); // Starting the transaction
+  // let keyvalStore = tx.objectStore('keyval'); // Build the object to put into the database
+
+  console.log("updateFavoriteInIDB function is running");
+    dbPromise.then(function(db) {
+      var tx = db.transaction('keyval', 'readwrite');
+      var store = tx.objectStore('keyval');
+      // var i = id;
+      console.log("The object store has been opened: " + id + " " + status);
+      console.log(restaurants.is_favorite);
+
+      store.put(restaurants.is_favorite);
+      return tx.complete;
+      // store.put(restaurants[id].is_favorite.status); // Put the new status here
+    }).catch(function(error){
+        console.log("Whooops" + error); // Give an error. error = what the error is exactly
+    })
+  // keyvalStore.put(restaurants[i],restaurants[i].id); // Storing each object into the databate (specifying what to store)
+  // return tx.complete; // Stop the transaction
+  // }).catch(function(error){
+  //   console.log("An erorr has occured during the IDB " + error); // Give an error. error = what the error is exactly
+  // })
+}
+
+/*
 Update restaurant data in IDB, if what is on the sails server has been changed
 */
 
-static updateIDB(id, status) {
-  console.log("Running updateIDB function"); // This works
-
-  dbPromise.then(function(db) {
-    const tx = db.transaction('keyval', 'readwrite');
-    const objectStore = tx.objectStore('keyval');
-  //   const myIndex = keyvalStore.index('is_favorite');
-
-    console.log("Opening transaction"); // this works
-    console.log("Restuarant " + id + " was clicked on and the favorite status is " + status) // this works
-
-    objectStore.openCursor().onsuccess = function(event) { // Cursor is not opening up
-      const cursor = event.target.result;
-      if (cursor) {
-        if (cursor.value.id === 10) // testing using ID of 10
-        console.log("Opening the keyval object store");
-        cursor.continue();
-      }
-
-    }
+// static updateIDB(id, status) {
+//   console.log("Running updateIDB function"); // This works
+//
+//   dbPromise.then(function(db) {
+//     const tx = db.transaction('keyval', 'readwrite');
+//     const objectStore = tx.objectStore('keyval');
+//   //   const myIndex = keyvalStore.index('is_favorite');
+//
+//     console.log("Opening transaction"); // this works
+//     console.log("Restuarant " + id + " was clicked on and the favorite status is " + status) // this works
+//
+//     objectStore.openCursor().onsuccess = function(event) { // Cursor is not opening up
+//       const cursor = event.target.result;
+//       if (cursor) {
+//         if (cursor.value.id === 10) // testing using ID of 10
+//         console.log("Opening the keyval object store");
+//         cursor.continue();
+//       }
+//
+//     }
 
 
 
@@ -174,8 +208,8 @@ static updateIDB(id, status) {
     //     console.log("This is the else statment being triggered");
     //   }
     // };
-  });
-}
+//   });
+// }
   /*
 
   Source: https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/update
@@ -548,7 +582,7 @@ static switchClass(id) {
            console.log(restaurants);
            // is_favorite: false
            console.log("Is restaurant " + id + " a favorite? " + status)
-           DBHelper.updateIDB(id, status);
+           DBHelper.updateFavoriteInIDB(id, status, restaurants);
 
          }
          else { // Oops!. Got an error from server.
