@@ -583,8 +583,8 @@ static switchClass(id) {
            console.log(restaurants);
            // is_favorite: false
            console.log("Is restaurant " + id + " a favorite? " + status)
-           DBHelper.updateFavoriteInIDB(id, status, restaurants);
-
+           // DBHelper.updateFavoriteInIDB(id, status, restaurants);
+          DBHelper.addDB(restaurants);
          }
          else { // Oops!. Got an error from server.
            const error = (`Request failed. Returned status of ${xhr.status}`);
