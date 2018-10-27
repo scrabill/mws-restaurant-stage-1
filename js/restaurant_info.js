@@ -177,6 +177,8 @@ submitForm = (postReview) => {
 
   const dummyframe = document.getElementById("dummyframe");
   postReviewtoDatabase.setAttribute('target', 'dummyframe');
+
+  DBHelper.addDBReviews();
 }
 
 // .setAttribute('onclick', 'DBHelper.switchMap()');
