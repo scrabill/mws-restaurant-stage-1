@@ -174,6 +174,9 @@ submitForm = (postReview) => {
   const postReviewtoDatabase = document.getElementById("reviewForm");
   postReviewtoDatabase.setAttribute('action', 'http://localhost:1337/reviews/');
   postReviewtoDatabase.setAttribute('method', 'post');
+
+  const dummyframe = document.getElementById("dummyframe");
+  postReviewtoDatabase.setAttribute('target', 'dummyframe');
 }
 
 // .setAttribute('onclick', 'DBHelper.switchMap()');
