@@ -13,7 +13,8 @@ var urlsToCache = [
       "/js/main.js",
       "/js/restaurant_info.js",
       "/js/idb.js",
-      "/img/undefined.jpg"
+      "/img/undefined.jpg",
+      "/img"
      ];
 
 // Open the cache & add urls
