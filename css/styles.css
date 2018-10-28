@@ -268,7 +268,9 @@ select:focus {
   min-height: 380px;
   padding: 25px 30px;
   text-align: left;
-  width: 270px;
+  /* width: 270px; */
+  min-width: 150px;
+  max-width: 300px;
 }
 
 #restaurants-list .restaurant-img {
