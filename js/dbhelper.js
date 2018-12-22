@@ -571,7 +571,7 @@ static switchClass(id) {
      let xhr = new XMLHttpRequest();
      //xhr.open('GET', 'http://localhost:1337/restaurants/?is_favorite=false'); // Get data from the sails server
      // xhr.open('PUT', 'http://localhost:1337/restaurants/1/?is_favorite=true');
-     xhr.open('PUT', 'http://localhost:1337/restaurants/'+ id + '/?is_favorite=' + status); // from laura
+     xhr.open('PUT', 'https://scrabill-restaurant-reviews.herokuapp.com/restaurants/'+ id + '/?is_favorite=' + status); // from laura
      // console.log('http://localhost:1337/restaurants/?is_favorite=false'); // http://localhost:1337/restaurants  `${DBHelper.DATABASE_URL_REVIEWS}?restaurant_id=${id}`
      xhr.onload = () => {
        if (xhr.status === 200) { // Got a success response from server!
