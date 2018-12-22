@@ -172,7 +172,7 @@ submitForm = (postReview) => {
   console.log("The form was submitted");
 
   const postReviewtoDatabase = document.getElementById("reviewForm");
-  postReviewtoDatabase.setAttribute('action', 'http://localhost:1337/reviews/');
+  postReviewtoDatabase.setAttribute('action', 'https://scrabill-restaurant-reviews.herokuapp.com/reviews/');
   postReviewtoDatabase.setAttribute('method', 'post');
 
   const dummyframe = document.getElementById("dummyframe");
@@ -182,7 +182,7 @@ submitForm = (postReview) => {
 }
 
 // .setAttribute('onclick', 'DBHelper.switchMap()');
-// postReview.setAttribute('action', 'http://localhost:1337/reviews/');
+// postReview.setAttribute('action', 'https://scrabill-restaurant-reviews.herokuapp.com/reviews/');
 // postReview.setAttribute('method', 'post');
 
 
