@@ -285,8 +285,11 @@ addMarkersToMap = (restaurants = self.restaurants) => {
 
 function currentYear() {
   var d = new Date();
+  console.log(d);
   var n = d.getFullYear();
-  document.getElementById("currentYear").innerHTML = n;
+  console.log(n);
+  document.getElementById('currentYear').innerText = n;
+
 }
 
 currentYear()
