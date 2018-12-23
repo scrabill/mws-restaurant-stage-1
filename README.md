@@ -8,6 +8,8 @@ This repo represents the three stages of Udacity's, [Mobile Web Specialist](http
 - Host project on portfolio site
 - Remove extra or unneeded code and comments
 - Add CODEOWNERS :question:
+- Improve Subject a Review form styling & functionality
+
 
 # References
 - [Starter Code for Stage 1](https://github.com/udacity/mws-restaurant-stage-1)
