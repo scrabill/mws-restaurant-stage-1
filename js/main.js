@@ -277,3 +277,16 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 }
+
+
+/*
+  Display the current year
+*/
+
+function currentYear() {
+  var d = new Date();
+  var n = d.getFullYear();
+  document.getElementById("currentYear").innerHTML = n;
+}
+
+currentYear()
