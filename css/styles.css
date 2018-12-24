@@ -300,7 +300,8 @@ select:focus {
 }
 
 #restaurants-list li a,
-button {
+button,
+#reviewSubmit {
   background-color: #9E3500;
   border-bottom: 3px solid #eee;
   color: #fff;
@@ -479,3 +480,25 @@ Styles if the restuarant is NOT a favorite
   background-color: magenta;
 }
 */
+
+/* ====================== Form Field ====================== */
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+fieldset > label {
+  width: 100px;
+  display: inline-block;
+  margin: 0;
+}
+
+input[type=text] {
+    /* width: 75%; */
+    height: 20px;
+    /* padding: 5px; */
+    border: none;
+    margin: 0;
+}
