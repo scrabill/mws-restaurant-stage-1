@@ -9,6 +9,7 @@ This repo represents the three stages of Udacity's, [Mobile Web Specialist](http
 - Remove extra or unneeded code and comments
 - Add CODEOWNERS :question:
 - Improve Subject a Review form styling & functionality
+- [Add meta descriptions to index and restaurant pages](https://developers.google.com/web/tools/lighthouse/audits/description)
 
 
 # References
