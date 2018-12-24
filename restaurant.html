@@ -60,16 +60,22 @@
 
       <form id="reviewForm">
         <fieldset>
-          <legend>Submit a Review</legend>
+          <h3>Submit a Review</h3>
           <label for="restaurant_id">Restaurant ID:</label>
-          <input id="restaurant_id" type="text" name="restaurant_id" placeholder="restaurant_id">
-
+          <input id="restaurant_id" type="text" name="restaurant_id">
+          </br>
           <label for="reviewer_name">Name:</label>
           <input id="reviewer_name" type="text" name="name" placeholder="Name">
-
+          </br>
           <label for="rating">Rating:</label>
-          <input id="rating" type="text" name="rating" placeholder="Rating">
-
+          <select id="rating" name="rating" >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          </br>
           <label for="comments">Comments:</label>
           <input id="comments" type="text" name="comments" placeholder="Comments">
 
